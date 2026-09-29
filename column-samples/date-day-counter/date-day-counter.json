@@ -22,7 +22,7 @@
       "children": [
         {
           "elmType": "span",
-          "txtContent": "=if(floor((Date(@currentField) + 46800000) / 86400000) == floor((@now + 46800000) / 86400000), '0d', if(floor((Date(@currentField) + 46800000) / 86400000) > floor((@now + 46800000) / 86400000), toString(floor((Date(@currentField) + 46800000) / 86400000 - floor((@now + 46800000) / 86400000))) + 'd', '-' + toString(floor((@now + 46800000) / 86400000 - (Date(@currentField) + 46800000) / 86400000)) + 'd'))",
+          "txtContent": "=if(floor(Date(@currentField)/86400000)==floor(@now/86400000),'0d',if(floor(Date(@currentField)/86400000)>floor(@now/86400000),toString(floor(Date(@currentField)/86400000)-floor(@now/86400000))+'d','-'+toString(floor(@now/86400000)-floor(Date(@currentField)/86400000))+'d'))",
           "style": {
             "color": "#666",
             "font-size": "10px",
@@ -32,11 +32,11 @@
         {
           "elmType": "span",
           "attributes": {
-            "iconName": "=if(floor((Date(@currentField) + 46800000) / 86400000) > floor((@now + 46800000) / 86400000), 'SortUp', if(floor((Date(@currentField) + 46800000) / 86400000) < floor((@now + 46800000) / 86400000), 'SortDown', 'CheckMark'))"
+            "iconName": "=if(floor(Date(@currentField)/86400000)>floor(@now/86400000),'SortUp',if(floor(Date(@currentField)/86400000)<floor(@now/86400000),'SortDown','CheckMark'))"
           },
           "style": {
             "font-size": "10px",
-            "color": "=if(floor((Date(@currentField) + 46800000) / 86400000) > floor((@now + 46800000) / 86400000), '#107c10', if(floor((Date(@currentField) + 46800000) / 86400000) < floor((@now + 46800000) / 86400000), '#a4262c', '#666'))"
+            "color": "=if(floor(Date(@currentField)/86400000)>floor(@now/86400000),'#107c10',if(floor(Date(@currentField)/86400000)<floor(@now/86400000),'#a4262c','#666'))"
           }
         }
       ]
@@ -62,7 +62,7 @@
         },
         {
           "elmType": "span",
-          "txtContent": "@currentField",
+          "txtContent": "=if(getDate(@currentField)<10,'0','')+toString(getDate(@currentField))+'/'+if(getMonth(@currentField)+1<10,'0','')+toString(getMonth(@currentField)+1)+'/'+toString(getYear(@currentField))",
           "style": {
             "font-weight": "500"
           }
